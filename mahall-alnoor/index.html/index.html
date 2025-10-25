@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>متجر النور لمستلزمات التبريد والتكييف</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #f4f8fc;
+      color: #003366;
+    }
+
+    header {
+      background-color: #0056b3;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #cce6ff;
+    }
+
+    .banner {
+      background: linear-gradient(to right, #007bff, #66b3ff);
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .banner h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin: 40px 0 10px 0;
+    }
+
+    .search-bar input {
+      width: 60%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      text-align: right;
+    }
+
+    .categories {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .categories button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .categories button:hover {
+      background-color: #0056b3;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 5px 0;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .whatsapp-btn {
+      background-color: #25D366;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .search-bar input { width: 90%; }
+      .banner h2 { font-size: 24px; }
+      .product-card img { height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="images/logo.jpg" alt="شعار متجر النور" class="logo">
+      <h1>متجر النور للتبريد والتكييف</h1>
+    </div>
+    <nav>
+      <a href="#products">المنتجات</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </header>
+
+  <section class="banner">
+    <h2>أهلاً بك في متجر النور</h2>
+    <p>كل ما تحتاجه من عدة وقطع غيار وغازات التبريد في مكان واحد.</p>
+  </section>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="🔍 ابحث عن منتج..." onkeyup="searchProducts()">
+  </div>
+
+  <div class="categories">
+    <button onclick="filterProducts('all')">الكل</button>
+    <button onclick="filterProducts('ac')">تكييفات</button>
+    <button onclick="filterProducts('gas')">فريونات</button>
+    <button onclick="filterProducts('tools')">أدوات وعدة</button>
+    
+    <button onclick="filterProducts('units')">غرف تبريد وتجميد</button>
+    <button onclick="filterProducts('spare')">قطع غيار</button>
+    <button onclick="filterProducts('material')"> خامات تبريد</button>
+  </div>
+
+  <section id="products">
+    <div class="products" id="productList">
+
+      <!-- تكييفات -->
+      <div class="product-card" data-category="ac">
+        <img src="images/ac1.png" alt="تكييف شارب">
+        <h3>تكييف 1.5 حصان شارب</h3>
+        <p>توفير للطاقة – تبريد سريع – صوت هادئ.</p>
+        <p> السعر=21500</p>
+        <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+      </div>
+
+      <div class="product-card" data-category="ac">
+        <img src="images/ac4.jpg" alt="تكييف كاريير">
+        <h3>تكييف 2.25 حصان كاريير</h3>
+        <p>تبريد فائق – موفر للطاقة – ضمان 5 سنوات.</p>
+        <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+      </div>
+
+      <!-- تكييفات 3 حصان -->
+      <div class="product-card" data-category="ac">
+        <img src="images/ac1.png" alt="تكييف شارب 3 حصان">
+        <h3>تكييف 3 حصان شارب</h3>
+        <p>قوة تبريد عالية – تبريد فوري – صوت منخفض.</p>
+        <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+      </div>
+
+      <div class="product-card" data-category="ac">
+        <img src="images/ac4.jpg" alt="تكييف كاريير 3 حصان">
+        <h3>تكييف 3 حصان كاريير</h3>
+        <p>كفاءة ممتازة – تبريد سريع – موفر للطاقة.</p>
+        <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+      </div>
+
+      <div class="product-card" data-category="ac">
+        <img src="images/ac5.png
+        " alt="تكييف LG 3 حصان">
+        <h3>تكييف 3 حصان LG</h3>
+        <p>تصميم أنيق – تبريد سريع – ضمان 5 سنوات.</p>
+        <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+      </div>
+
+      <div class="product-card" data-category="ac">
+        <img src="images/ac6.jpg" alt="تكييف Samsung 3 حصان">
+        <h3>تكييف 3 حصان سامسونج</h3>
+        <p>تبريد فوري – تصميم عصري – كفاءة عالية.</p>
+        <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+      </div>
+
+      <!-- فريونات -->
+      <div class="product-card" data-category="gas">
+        <img src="images/gas1.jpg" alt="غاز فريون R410">
+        <h3>غاز فريون R410</h3>
+        <p>غاز تبريد عالي الجودة وصديق للبيئة.</p>
+        <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+      </div>
+
+      <div class="product-card" data-category="gas">
+        <img src="images/gas2.jpg" alt="غاز فريون R22">
+        <h3>غاز فريون R22</h3>
+        <p>مناسب لمعظم وحدات التكييف .</p>
+        <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+      </div>
+            <div class="product-card" data-category="gas">
+        <img src="images/gas3.jpg" alt="غاز فريون R134">
+        <h3>غاز فريون R134</h3>
+        <p>مناسب لمعظم وحدات التكييف .</p>
+        <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+      </div>
+
+      <!-- أدوات -->
+<!-- أدوات وعدة -->
+<div class="product-card" data-category="tools">
+  <img src="images/tools1.jpg" alt="اسطوانة اكسجين">
+  <h3>اسطوانات اكسجين (جميع المقاسات)</h3>
+  <p>أسطوانات عالية الجودة لفنيي التبريد والتكييف – متوفرة بجميع الأحجام.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="tools">
+  <img src="images/tools2.jpg" alt="عداد فريون">
+  <h3>عداد فريون (Gauge Manifold)</h3>
+  <p>عداد دقيق لقياس ضغط الفريون أثناء الشحن والتفريغ.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="tools">
+  <img src="images/tools3.jpg" alt="طلمبة فاكيوم">
+  <h3>طلمبة فاكيوم احترافية</h3>
+  <p>ضرورية لتفريغ الهواء والرطوبة قبل شحن الغاز – متوفرة بمقاسات مختلفة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="tools">
+  <img src="images/tools4.jpg" alt="أمبير">
+  <h3>أمبير قياس تيار</h3>
+  <p>جهاز قياس تيار كهربائي دقيق للفحص والصيانة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="tools">
+  <img src="images/tools5.jpg" alt="طقم مفكات">
+  <h3>طقم مفكات احترافي</h3>
+  <p>مجموعة مفكات عالية الجودة – مقاومة للصدأ – بأحجام متنوعة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="tools">
+  <img src="images/tools6.jpg" alt="طقم الانكيه">
+  <h3>طقم مفاتيح الانكيه</h3>
+  <p>مصنوع من الصلب المقوّى – مناسب لأعمال الصيانة الدقيقة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="tools">
+  <img src="images/tools7.jpg" alt="مكنة غسيل">
+  <h3>مكنة غسيل ضغوط</h3>
+  <p>مضخة قوية لغسيل وحدات التبريد والمكثفات بكفاءة عالية.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="tools">
+  <img src="images/tools8.jpg" alt="حوض صيانة">
+  <h3>حوض صيانة معدات التبريد</h3>
+  <p>حوض متين لتنظيف وغسيل القطع أثناء الصيانة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+      <!-- وحدات -->
+<!-- وحدات وأجزاء غرف التبريد -->
+<div class="product-card" data-category="units">
+  <img src="images/unit1.jpg" alt="المكثف (Condenser)">
+  <h3>المكثف (Condenser)</h3>
+  <p>وحدة تبريد عالية الكفاءة لطرد الحرارة – تناسب المخازن والمطاعم الصغيرة والمتوسطة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="units">
+  <img src="images/unit2.jpg" alt="الكمبروسر (Compressor)">
+  <h3>الكمبروسر (Compressor)</h3>
+  <p>ضواغط تبريد أصلية من ماركات عالمية – قدرة عالية واستهلاك منخفض للطاقة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="units">
+  <img src="images/unit3.jpg" alt="المبخر (Evaporator)">
+  <h3>المبخر (Evaporator)</h3>
+  <p>يعمل على تبريد هواء الغرفة بكفاءة – مزود بمروحة قوية ومواد مقاومة للصدأ.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="units">
+  <img src="images/unit4.jpg" alt="صمامات التحكم (Valves)">
+  <h3>صمامات التحكم (Valves)</h3>
+  <p>مجموعة متنوعة من صمامات التمدد والتحكم في تدفق الغاز بدقة عالية.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="units">
+  <img src="images/unit5.jpg" alt="لوحات التحكم الكهربائية">
+  <h3>لوحات التحكم</h3>
+  <p>لوحات تحكم مجهزة طبقًا للمواصفات المطلوبة – تشمل مؤشرات الحرارة والحماية الكاملة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="units">
+  <img src="images/unit6.jpg" alt="ألواح سندوتش بانل">
+  <h3>ألواح سندوتش بانل</h3>
+  <p>ألواح عزل عالية الجودة من البولي يوريثان – تمنع تسرب الحرارة وتحافظ على البرودة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="units">
+  <img src="images/unit7.jpg" alt="أبواب غرف التبريد">
+  <h3>أبواب غرف التبريد</h3>
+  <p>أبواب معزولة حراريًا ومزودة بجوانات مطاطية – تصميم قوي وسهل التشغيل.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+
+<!-- 🧊 قسم قطع الغيار والخامات -->
+<div class="product-card" data-category="spare">
+  <img src="images/spare1.jpg" alt="كمبروسر تبريد">
+  <h3>كمبروسر تبريد (Compressor)</h3>
+  <p>ضواغط تبريد لجميع القدرات والماركات — كوبلاند، دانفوس، تايلور، باناسونيك.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare2.jpg" alt="المبخر والمكثف">
+  <h3>المبخر والمكثف (Evaporator & Condenser)</h3>
+  <p>ملفات تبادل حراري عالية الجودة — ألمونيوم ونحاس، تبريد وتجميد.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare3.jpg" alt="صمامات تمدد وتحكم">
+  <h3>صمامات تمدد وتحكم</h3>
+  <p>صمامات TX2، صمامات ضغط عالي ومنخفض، صمامات كهربائية (Solenoid).</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare4.jpg" alt="فلتر فريون">
+  <h3>فلتر فريون (Dryer Filter)</h3>
+  <p>فلاتر تنشيف أصلية لإزالة الشوائب والرطوبة من دورة التبريد — دانفوس، كوبر، إليوت.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare5.jpg" alt="ريلاي وأوفرلود">
+  <h3>ريلاي وأوفرلود كمبروسر</h3>
+  <p>أنواع أصلية لحماية الضواغط من التيار الزائد أو الأعطال المفاجئة.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare6.jpg" alt="ثرموستات">
+  <h3>ثرموستات وتحكم رقمي</h3>
+  <p>منظمات حرارة ميكانيكية ورقمية (ديجيتال) لجميع أجهزة التبريد.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare7.jpg" alt="مواسير نحاس">
+  <h3>مواسير نحاس تبريد</h3>
+  <p>مواسير نحاس مستوردة بجميع المقاسات (1/4 – 5/8 – 7/8) بجودة عالية.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare8.jpg" alt="عوازل حرارية">
+  <h3>عوازل حرارية (Insulation)</h3>
+  <p>عوازل فوم وأنابيب مطاطية لعزل مواسير التبريد والحفاظ على الكفاءة الحرارية.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare9.jpg" alt="أسلاك وكابلات">
+  <h3>أسلاك وكابلات تبريد</h3>
+  <p>كابلات نحاسية أصلية مقاومة للحرارة والرطوبة، بأحجام من 1 مم حتى 10 مم.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare10.jpg" alt="خراطيم شحن فريون">
+  <h3>خراطيم شحن فريون</h3>
+  <p>خراطيم عالية الضغط بمقاسات مختلفة، مقاومة للتآكل، مناسبة لجميع الغازات.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare11.jpg" alt="زيت كمبروسر">
+  <h3>زيوت كمبروسر (Compressor Oil)</h3>
+  <p>زيوت تبريد أصلية معدنية وPOE لجميع أنواع الضواغط (R22 – R410 – R134a).</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+
+
+<div class="product-card" data-category="spare">
+  <img src="images/spare12.jpg" alt="ستائر بلاستيك PVC">
+  <h3>ستائر بلاستيك PVC</h3>
+  <p>ستائر عازلة للهواء والبرودة – شفافة ومرنة – مناسبة لغرف التبريد.</p>
+  <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">اطلب الآن</a>
+</div>
+
+
+    </div>
+  </section>
+
+  <section id="contact" style="text-align:center; padding:40px;">
+    <h2>📞 تواصل معنا</h2>
+    <p>الهاتف / واتساب: <strong>01092322744</strong></p>
+    <p>العنوان: نضيفه لاحقًا حسب رغبتك</p>
+    <a href="https://wa.me/201092322744" class="whatsapp-btn" target="_blank">💬 تواصل عبر واتساب</a>
+  </section>
+
+  <footer>
+    <p>© 2025 محل النور للتبريد والتكييف - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    function searchProducts() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const products = document.querySelectorAll('.product-card');
+      products.forEach(product => {
+        const name = product.querySelector('h3').textContent.toLowerCase();
+        product.style.display = name.includes(input) ? '' : 'none';
+      });
+    }
+
+    function filterProducts(category) {
+      const products = document.querySelectorAll('.product-card');
+      products.forEach(product => {
+        product.style.display = (category === 'all' || product.dataset.category === category) ? '' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>
