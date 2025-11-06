@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <!-- الصفحة الرئيسية -->
+   <url>
+      <loc>https://alnoor-cooling.netlify.app/</loc>
+      <lastmod>2025-11-02</lastmod>
+      <priority>1.0</priority>
+   </url>
+   <!-- مثال لصفحة أخرى: من نحن -->
+   <url>
+      <loc>https://alnoor-cooling.netlify.app/about</loc>
+      <lastmod>2025-11-02</lastmod>
+      <priority>0.8</priority>
+   </url>
+   <!-- مثال لصفحة تواصل معنا -->
+   <url>
+      <loc>https://alnoor-cooling.netlify.app/contact</loc>
+      <lastmod>2025-11-02</lastmod>
+      <priority>0.8</priority>
+   </url>
+</urlset>
